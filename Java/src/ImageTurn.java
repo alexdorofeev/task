@@ -1,6 +1,11 @@
 /**
  * Created by Dorofeev on 3/30/2016.
  */
+ /**
+  * Дано: изображение в виде матрицы размером
+  * N × N, где каждый пиксель занимает 4 байта. 
+  * Метод, поворачивает изображение на 90°
+  * /
 public class ImageTurn {
     public static void main(String[] args) {
         int[][] matrix= {{55, 11, 11, 11}, {55, 44, 44, 22}, {55, 44, 44, 22}, {33, 33, 33, 22}};
@@ -16,15 +21,15 @@ public class ImageTurn {
             int last = n - 1 - layer;
             for (int i = first; i < last; ++i) {
                 int offset = i - first;
-
+                    // сохраняем -> вершину
                 int top = matrix[first][i];
-
+                    // левая -> верхнея
                 matrix[first][i] = matrix[last - offset][first];
-
+                    // нижнея -> левая
                 matrix[last - offset][first] = matrix[last][last - offset];
-
+                    //правая -> нижнея
                 matrix[last][last - offset] = matrix[i][last];
-
+                    //вершина -> правая
                 matrix[i][last] = top;
 
             }
