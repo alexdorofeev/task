@@ -13,7 +13,7 @@ public class lab1 {
 
         double v,x0,x1;
         int count=0;
-        System.out.println("******  FIXED POINT METHOD  ******");
+
         do
         {   count++;
             x0=a;
