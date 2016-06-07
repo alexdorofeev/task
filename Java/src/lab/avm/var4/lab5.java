@@ -1,4 +1,4 @@
-package lab.avm.var3;
+package lab.avm.var4;
 
 import java.util.LinkedList;
 
@@ -6,16 +6,16 @@ import java.util.LinkedList;
  * Created by Dorofeev on 6/7/2016.
  */
 public class lab5 {
-    private static double a = 3.1;
-    private static double b = 5.4;
-    private static double c = 0.2;
-    private static double d = 9.6;
-    private static double e = 7.8;
+    private static double a = 1.2;
+    private static double b = 0.7;
+    private static double c =9.3;
+    private static double d = 6.5;
+    private static double e = 8.4;
     public static void main(String[] args) {
 
-        System.out.println(eval("a-(b+c*d)/e"));
+        System.out.println(eval("a/b-((c+d)*e)"));
     }
-    static  boolean isOperator(char c) {
+  static  boolean isOperator(char c) {
 
         return c == '+' || c == '-' || c == '*' || c == '/';
 
@@ -35,11 +35,11 @@ public class lab5 {
         }
     }
 
-    static void letGo(LinkedList<Double> st, char oper) {
+   static void letGo(LinkedList<Double> st, char oper) {
 
         double someOne = st.removeLast();
 
-        double someTwo = st.removeLast();
+       double someTwo = st.removeLast();
 
         switch(oper) {
             case '+':
@@ -58,7 +58,7 @@ public class lab5 {
                 System.out.println("Oops");
         }
     }
-    static double eval(String s) {
+   static double eval(String s) {
         LinkedList<Double> someDoub = new LinkedList<>();
         LinkedList<Character> someOpers = new LinkedList<>();
         for(int i = 0; i < s.length(); i++) {
@@ -81,7 +81,7 @@ public class lab5 {
             }
             else {
 
-                //  String operand = "";
+              //  String operand = "";
                 while(i < s.length() &&
                         isLetter(s.charAt(i))) {
 
