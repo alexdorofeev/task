@@ -1,46 +1,47 @@
 package lab.avm.var4;
 
+
 /**
  * Created by Dorofeev on 4/24/2016.
  */
 public class lab1 {
     public static void main(String[] args) {
-        double a, b;
-        double eps = 0.01;
-        //	Scanner scanner = new Scanner(System.in);
-        a = 4;
-        b = 7;
-
-        double v,x0,x1;
-        int count=0;
-        System.out.println("******  FIXED POINT METHOD  ******");
-        do
-        {   count++;
-            x0=a;
-            x1=fun(x0);
-            if(Math.abs(fun(x1)-fun(x0))<=eps){
-                System.out.println("Approximate Roots" + x1 + "Roots is found iteration " + count);
-            }
-            v=x1;
-        }while(Math.abs(fun(x1)-fun(x0))>eps);
-
-        System.out.println("===========================================");
-        int k =0;
+        double a = 4, b = 7;
+        double eps = 0.0001;
         double step = 0.5;
-        for (double X = a; X <= b; X += step) {
-            double Y1 = fun(X);
-            double Y2 = fun(X + step);
+        //	Scanner scanner = new Scanner(System.in)
+        double Y1, Y2;
+        double x;
+        double x1;
+        double con;
+        int count=0;
 
-            if (Y1*Y2 < 0) {
-                k++;
-                System.out.println("Root in line from " + X + " to " + (X+step));
-                double rootIter = simpleIteration(X, X+step, eps);
-                double rootBin = bisection(X, X+step, eps);
-                System.out.println("Iteration: " + rootIter + " Checking: " + fun(rootIter));
-                System.out.println("Bisection: " + rootBin + " Checking: " + fun(rootBin));
+        for(x =a; x<=b; x+=step) {
+            Y1 = fun(x);
+            Y2 = fun(x+step);
+            if(Y1*Y2<0) {
+                count++;
+                System.out.println("\nRoot in the interval from " + x + "to " + (x+step));
             }
         }
-        System.out.println("Nomber of roots = " + k);
+
+        x = 4.5;
+         x1 = 5;
+        con = -0.001;
+        bisection(x, x+step, eps);
+        simpleIteration(x, con, eps);
+
+        x = 5;
+         x1 = 5.5;
+        con = 0.001;
+        bisection(x, x+step, eps);
+        simpleIteration(x, con, eps);
+
+        x = 6;
+         x1 = 6.5;
+        con = -0.001;
+        bisection(x, x+step, eps);
+        simpleIteration(x, con, eps);
     }
 
     public static double fun(double x) {
@@ -49,15 +50,18 @@ public class lab1 {
 
     }
 
-    public static double simpleIteration(double from, double to, double eps){
+    public static void  simpleIteration(double from, double to, double eps){
+        double x1 = from;
+        double x;
         do{
-            from = to;
-            to = fun(from);
-        }while ( Math.abs( fun(to) - fun(from) ) > eps );
-        return from;
+            x = x1;
+            x1 = x1  +  to*fun(x);
+
+        }while (Math.abs( x1 - x )> eps );
+        System.out.println("Method of simple iterations: " + x1);
     }
 
-    public static double bisection(double from, double to, double eps) {
+    public static void bisection(double from, double to, double eps) {
         double yFrom = fun(from);
         double yTo = fun(to);
         while ((to - from) > eps) {
@@ -73,6 +77,6 @@ public class lab1 {
             }
         }
 
-        return (from + to)/2;
+        System.out.println("Bisection " + (from + to)/2);
     }
 }

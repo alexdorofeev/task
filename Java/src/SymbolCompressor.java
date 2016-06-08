@@ -11,7 +11,7 @@ import java.util.Map;
  */
 public class SymbolCompressor {
     public static void main(String[] args) {
-       compresSymbol("aaabbbcccdddeerttrfff");
+       compresSymbol("aaabbbccccdddeeeeeerttrfff");
         compresSymbol("22222111114445");
     }
     private static void compresSymbol(String str){
