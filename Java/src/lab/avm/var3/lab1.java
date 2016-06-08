@@ -36,6 +36,7 @@ public class lab1 {
         bisection(x, x+step, eps);
         simpleIteration(x, con, eps);
 
+
         x = 7;
        // x1 = 8.5;
         con = 0.001;
