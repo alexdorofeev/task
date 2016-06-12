@@ -67,25 +67,24 @@ public class lab5 {
             char c = s.charAt(i);
             if(c == '(') {
                 someOpers.add('(');
-                some.add(c);
+             //   some.add(c);
             }
             else if (c == ')') {
                 while(someOpers.getLast() != '(') {
-                    some.add(c);
-
+                    some.add(someOpers.getLast());
                     letGo(someDoub, someOpers.removeLast());
                 }
+                //some.add(c);
                 someOpers.removeLast();
             }
             else if (isOperator(c)) {
                 while(!someOpers.isEmpty() &&
                         priority(someOpers.getLast()) >= priority(c)) {
-                    some.add(c);
-
+                    some.add(someOpers.getLast());
                     letGo(someDoub, someOpers.removeLast());
                 }
                 someOpers.add(c);
-                some.add(c);
+                //some.add(c);
             }
             else {
 
@@ -93,7 +92,6 @@ public class lab5 {
                 while(i < s.length() &&
                         isLetter(s.charAt(i))) {
                     some.add(c);
-
                     someDoub.add(getValue(s.charAt(i++)));
                 }
                 --i;
@@ -101,6 +99,7 @@ public class lab5 {
             }
         }
         while(!someOpers.isEmpty()) {
+            some.add(someOpers.getLast());
             letGo(someDoub, someOpers.removeLast());
         }
         System.out.println(Arrays.toString(some.toArray()));
