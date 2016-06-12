@@ -1,5 +1,6 @@
 package lab.avm.var3;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 
 /**
@@ -61,13 +62,17 @@ public class lab5 {
     static double eval(String s) {
         LinkedList<Double> someDoub = new LinkedList<>();
         LinkedList<Character> someOpers = new LinkedList<>();
+        LinkedList<Character> some = new LinkedList<>();
         for(int i = 0; i < s.length(); i++) {
             char c = s.charAt(i);
             if(c == '(') {
                 someOpers.add('(');
+                some.add(c);
             }
             else if (c == ')') {
                 while(someOpers.getLast() != '(') {
+                    some.add(c);
+
                     letGo(someDoub, someOpers.removeLast());
                 }
                 someOpers.removeLast();
@@ -75,15 +80,19 @@ public class lab5 {
             else if (isOperator(c)) {
                 while(!someOpers.isEmpty() &&
                         priority(someOpers.getLast()) >= priority(c)) {
+                    some.add(c);
+
                     letGo(someDoub, someOpers.removeLast());
                 }
                 someOpers.add(c);
+                some.add(c);
             }
             else {
 
                 //  String operand = "";
                 while(i < s.length() &&
                         isLetter(s.charAt(i))) {
+                    some.add(c);
 
                     someDoub.add(getValue(s.charAt(i++)));
                 }
@@ -94,6 +103,7 @@ public class lab5 {
         while(!someOpers.isEmpty()) {
             letGo(someDoub, someOpers.removeLast());
         }
+        System.out.println(Arrays.toString(some.toArray()));
         return someDoub.get(0);
     }
     public static double getValue(char ch)

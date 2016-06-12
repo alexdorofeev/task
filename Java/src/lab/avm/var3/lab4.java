@@ -8,42 +8,44 @@ import java.util.Scanner;
  * Created by Dorofeev on 4/24/2016.
  */
 public class lab4 {
+    static  int coun = 0;
 
     public static void main(String[] args) throws Exception {
         Random random = new Random();
-        int[] a;
+        int[] a, b;
+
         int n;
         Scanner scaner = new Scanner(System.in);
         n = scaner.nextInt();
         a = new int[n];
-
+        b = new int[n];
 
 
         for (int i = 0; i < a.length; i++) {
             a[i] = random.nextInt(20);
+            b[i] = a[i];
         }
         System.out.println(Arrays.toString(a));
-        long timeout = System.currentTimeMillis();
-        //lineSort(a);
-        horSort(a, 0, n-1);
-        timeout = System.currentTimeMillis() - timeout;
-        System.out.println(Arrays.toString(a) + "Время работы метода = " + timeout);
+
+        lineSort(a);
+        System.out.println(Arrays.toString(a));
+        horSort(b, 0, n-1);
+        System.out.println("Horsort count= " + coun);
+        System.out.println(Arrays.toString(b));
 
         Scanner t = new Scanner(System.in);
         System.out.println("Введите число для поиска");
         int x = t.nextInt();
 
-        long y = System.currentTimeMillis();
-        binarySerch(a, x);
-        y = System.currentTimeMillis() - y;
+        binarySerch(b, x);
 
-        System.out.println("Время работы метода = " + y);
 
     }
 
     public static int[] lineSort(int[] arr) {
-
+        int count = 0;
         for (int i = 0; i < arr.length ; i++) {
+            count++;
             int	k = i;
             int max = arr[i];
             for (int j = i+1; j < arr.length ; j++) {
@@ -55,7 +57,7 @@ public class lab4 {
             arr[k] = arr[i];
             arr[i] = max;
         }
-
+        System.out.println("Linesotr count= " + count);
         return arr;
     }
 
@@ -63,7 +65,9 @@ public class lab4 {
         int	i = left;
         int j = right;
         int t = arr[(left + right)/2];
+
         do{
+            coun++;
             while(arr[i] < t){
                 i++;
             }
